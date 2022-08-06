@@ -52,7 +52,8 @@ export class TaskDeshboardComponent implements OnInit{
   constructor(private router: Router,
     private commonService: CommonService,
     private dragulaService: DragulaService){
-            
+      const taskBag: any = this.dragulaService.find('task-list');
+      if (taskBag !== undefined ) this.dragulaService.destroy('task-list');
       //create drag and drop group
       dragulaService.createGroup("task-list", {
         removeOnSpill: true
