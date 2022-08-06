@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DragulaModule } from "ng2-dragula";
 import { CommonPopupComponent } from "./common-popup/common-popup.component";
 import { CommonService } from "./common.service";
 import { CreateTaskComponent } from "./create-task/create-task.component";
@@ -18,7 +19,8 @@ import { TaskDeshboardComponent } from "./task-deshboard.component";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        TaskDeshboardRoutingModule
+        TaskDeshboardRoutingModule,
+        DragulaModule.forRoot()
     ],
     providers: [CommonService]
 })

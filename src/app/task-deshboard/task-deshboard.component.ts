@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs';
 import { CommonService } from './common.service';
 
@@ -49,7 +50,20 @@ export class TaskDeshboardComponent implements OnInit{
   public taskCount:any = 3;
 
   constructor(private router: Router,
-    private commonService: CommonService){}
+    private commonService: CommonService,
+    private dragulaService: DragulaService){
+            
+      //create drag and drop group
+      dragulaService.createGroup("task-list", {
+        removeOnSpill: true
+      });
+
+      //get task drop data
+      this.dragulaService.drop("task-list")
+        .subscribe(({ name, el, target, source, sibling }) => {
+            console.log(this.taskDeshoardList);
+      })      
+    }
 
   ngOnInit(){
     this.getCreatedTask();
