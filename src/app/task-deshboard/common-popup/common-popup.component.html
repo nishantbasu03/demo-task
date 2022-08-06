@@ -1,0 +1,44 @@
+<div class="modal">
+    <div class="modal-open">
+        <div class="modal-header">
+            <h4 class="modal-title"> Task management</h4>
+        </div>
+        <div class="modal-body">
+            <div *ngIf="duplicateTaskDetailList && duplicateTaskDetailList.data">
+                <div class="row mb-15">
+                    <div class="col-sm-5 default-text text-center">
+                        Task List
+                    </div>
+                    <div class="col-sm-7 default-text text-center">
+                        Task Status
+                    </div>
+                </div>
+                <div *ngFor="let taskList of duplicateTaskDetailList.data">
+                    <div *ngIf="taskList.taskList && taskList.taskList.length > 0" >
+                        <div *ngFor="let taskDetail of taskList.taskList" class="row">
+                            <div class="col-sm-5">
+                                <div class="tasklist-block">
+                                    <span class="default-text">{{taskDetail.title}}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="row d-flex justify-content-center">
+                                        <button type="button" class="btn btn-outline-secondary task-status-btn" [ngClass]="{'btn-secondary': taskList.status == 1,'text-white': taskList.status == 1}"
+                                        (click)="onChangeTaskStatus(taskDetail,taskList.status,1)">To do</button>
+                                        <button type="button" class="btn btn-outline-secondary task-status-btn w-150" [ngClass]="{'btn-secondary': taskList.status == 2,'text-white': taskList.status == 2}"
+                                        (click)="onChangeTaskStatus(taskDetail,taskList.status,2)">In progress</button>
+                                        <button type="button" class="btn btn-outline-secondary task-status-btn" [ngClass]="{'btn-secondary': taskList.status == 3,'text-white': taskList.status == 3}"
+                                        (click)="onChangeTaskStatus(taskDetail,taskList.status,3)">Completed</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="add-user-btn bg-danger" (click)="onClose()">Cancel</button>
+            <button type="button" class="add-user-btn" (click)="onSave()">Save</button>
+        </div>
+    </div>
+</div> 

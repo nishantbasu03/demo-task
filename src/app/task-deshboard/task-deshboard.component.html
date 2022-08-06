@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="flex-container">
+        <div class="row">
+            <div class="col-sm-12">
+              <div class="header">
+                Projects
+              </div>  
+            </div>
+        </div>
+        <div *ngIf="taskDeshoardList && taskDeshoardList.data && taskDeshoardList.data.length > 0" class="row">
+            <div *ngFor="let taskList of taskDeshoardList.data" class="col-sm-4">
+                <div class="task-list-div">
+                    <div class="mb-15">
+                        <span class="default-text">
+                            {{taskList.status == 1 ? 'To do' : taskList.status == 2 ? 'In progress' : 'Completed' }}
+                        </span>
+                        <span class="task-count">
+                            {{taskList.noOfTask}}
+                        </span>
+                    </div>
+                    <button type="button" class="add-task" (click)="createTask(taskList.status)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00ff99" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </button>
+                    <div *ngIf="taskList.taskList && taskList.taskList.length > 0"  [dragula]="'task-list'" [dragulaModel]="taskList.taskList" class="task-block">
+                        <div *ngFor="let taskDetail of taskList.taskList" class="task-card">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-dot" viewBox="0 0 16 16" 
+                                [ngStyle] = "{'fill': taskDetail.priority == 1 ? 'green' : taskDetail.priority == 2 ? 'orange' : 'blue' }">
+                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                </svg>
+                                <span class="default-text">{{taskDetail.title}}</span>
+                                <span class="float-end">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b9b8b8" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                        <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                                        <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="task-desc">
+                                <span>{{taskDetail.description}}</span>
+                            </div>
+                            <div *ngIf="!taskDetail.fileSource">
+                                <img class="w-30" src="assets/a-letter.png" alt="">
+                                <img class="w-30 overlap-icon" src="assets/d-letter.png" alt="">
+                            </div>
+                            <div *ngIf="taskDetail.fileSource">
+                                <img class="b-radius" [src]="taskDetail.fileSource" width="30px" height="30px" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<common-popup *ngIf="isEnablePopup" [taskDetailList]="taskDeshoardList" (isClosePopup)="closePopup()" (isTaskStatusChange)="onTaskStatusChanges($event)"></common-popup>
