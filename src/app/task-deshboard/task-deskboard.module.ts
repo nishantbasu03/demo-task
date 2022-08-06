@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonPopupComponent } from "./common-popup/common-popup.component";
 import { CommonService } from "./common.service";
 import { CreateTaskComponent } from "./create-task/create-task.component";
 import { TaskDeshboardRoutingModule } from "./task-deshboard-routing.module";
@@ -10,7 +11,8 @@ import { TaskDeshboardComponent } from "./task-deshboard.component";
 @NgModule({
     declarations: [
         TaskDeshboardComponent,
-        CreateTaskComponent
+        CreateTaskComponent,
+        CommonPopupComponent
     ],
     imports: [
         CommonModule,

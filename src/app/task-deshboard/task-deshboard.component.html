@@ -55,3 +55,5 @@
         </div>
     </div>
 </div>
+
+<common-popup *ngIf="isEnablePopup" [taskDetailList]="taskDeshoardList" (isClosePopup)="closePopup()" (isTaskStatusChange)="onTaskStatusChanges($event)"></common-popup>
