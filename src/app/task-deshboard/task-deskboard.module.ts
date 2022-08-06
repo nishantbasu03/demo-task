@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonService } from "./common.service";
 import { CreateTaskComponent } from "./create-task/create-task.component";
 import { TaskDeshboardRoutingModule } from "./task-deshboard-routing.module";
 import { TaskDeshboardComponent } from "./task-deshboard.component";
@@ -14,9 +15,10 @@ import { TaskDeshboardComponent } from "./task-deshboard.component";
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         TaskDeshboardRoutingModule
     ],
-    providers: []
+    providers: [CommonService]
 })
 
 export class TaskDeshboardModule{}

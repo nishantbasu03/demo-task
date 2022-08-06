@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="flex-container">
+        <div class="default-text head-title">Create Task</div>
+        <div class="form-block">
+            <div class="form-div">
+                <form [formGroup]="taskForm" (ngSubmit)="submit()">
+                    <div class="mb-3">
+                      <label class="form-label default-text">Title :</label>
+                      <input type="text" class="form-control" formControlName="title">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label default-text">Description :</label>
+                        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label default-text">Priority :</label>
+                        <div>
+                            <select class="form-control" formControlName="priority">
+                                <option value="1">Average</option>
+                                <option value="2">High</option>
+                                <option value="3">Critical</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-40 position-relative">
+                        <label class="form-label default-text">Image Upload :</label>
+                        <input id="file" type="file" class="form-control" (change)="onFileChange($event)" formControlName="file">
+                        <img *ngIf="imageSrc" class="position-absolute img-upload" [src]="imageSrc" width="30px" height="30px"/>
+                    </div>
+                    <div class="mb-3 row">
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-danger w-100" [routerLink]="['/task-deshboard']">Cancel</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-success w-100">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

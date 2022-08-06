@@ -1,8 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+// scrollbar
+::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+}
+  
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
 .mb-15{
     margin-bottom: 15px;
 }
 
+.mb-40{
+    margin-bottom: 40px;
+}
+
 .w-30{
     width: 30px;
+}
+
+.default-text{
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.b-radius{
+    border-radius: 100%;
 }
