@@ -9,6 +9,7 @@ import { CommonService } from './common.service';
   styleUrls: ['./task-deshboard.component.scss']
 })
 export class TaskDeshboardComponent implements OnInit{
+  public isEnablePopup:boolean = false;
   public taskDeshoardList:any = {
     data : [
       {
@@ -74,7 +75,19 @@ export class TaskDeshboardComponent implements OnInit{
   createTask(data:any){
     if(data == 1){
       this.router.navigate(['/task-deshboard/create-task'], { queryParams: { id: this.taskCount}});
+    }else{
+      this.isEnablePopup = true;
     }
+  }
+
+  closePopup(){
+    this.isEnablePopup = false;
+  }
+
+  onTaskStatusChanges(data:any){
+    this.taskDeshoardList = data;
+    this.isEnablePopup = false;
+    console.log(this.taskDeshoardList);
   }
 
   ngOnDestroy(){
